@@ -13,42 +13,18 @@ public class smooth_follow : MonoBehaviour
 	public bool LockZ;
 	public bool useSmoothing;
 	public Transform target;
-	public GameObject hudElements;
 	#endregion
 	
 	#region Private Properties
 	private Transform thisTransform;
 	private Vector3 velocity;
 	#endregion
-
-	bool hudActive = true;
 	
 	private void Awake()
 	{
 		thisTransform = transform;
 		
 		velocity = new Vector3(0.5f, 0.5f, 0.5f);
-	}
-
-	void Update()
-	{
-		if(hudActive)
-		{
-			if (Input.GetKeyDown(KeyCode.H))
-			{
-				hudElements.SetActive (false);
-				hudActive = false;
-			}
-
-		}
-		else
-		{
-			if (Input.GetKeyDown(KeyCode.H))
-			{
-				hudElements.SetActive (true);
-				hudActive = true;
-			}
-		}
 	}
 
 	// ReSharper disable UnusedMember.Local
