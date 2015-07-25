@@ -31,38 +31,44 @@ public class smooth_follow : MonoBehaviour
 	private void LateUpdate()
 		// ReSharper restore UnusedMember.Local
 	{
-		var newPos = Vector3.zero;
-		
-		if (useSmoothing)
-		{
-			newPos.x = Mathf.SmoothDamp(thisTransform.position.x, target.position.x + offSetX, ref velocity.x, SMOOTH_TIME);
-			newPos.y = Mathf.SmoothDamp(thisTransform.position.y, target.position.y, ref velocity.y, SMOOTH_TIME);
-			newPos.z = Mathf.SmoothDamp(thisTransform.position.z, target.position.z, ref velocity.z, SMOOTH_TIME);
-		}
-		else
-		{
-			newPos.x = target.position.x;
-			newPos.y = target.position.y;
-			newPos.z = target.position.z;
-		}
-		
-		#region Locks
-		if (LockX)
-		{
-			newPos.x = thisTransform.position.x;
-		}
-		
-		if (LockY)
-		{
-			newPos.y = thisTransform.position.y;
-		}
-		
-		if (LockZ)
-		{
-			newPos.z = thisTransform.position.z;
-		}
-		#endregion
-		
-		transform.position = Vector3.Slerp(transform.position, newPos, Time.time);
+        if (target == null)
+            Destroy(this.gameObject);
+        else
+        {
+
+            var newPos = Vector3.zero;
+
+            if (useSmoothing)
+            {
+                newPos.x = Mathf.SmoothDamp(thisTransform.position.x, target.position.x + offSetX, ref velocity.x, SMOOTH_TIME);
+                newPos.y = Mathf.SmoothDamp(thisTransform.position.y, target.position.y, ref velocity.y, SMOOTH_TIME);
+                newPos.z = Mathf.SmoothDamp(thisTransform.position.z, target.position.z, ref velocity.z, SMOOTH_TIME);
+            }
+            else
+            {
+                newPos.x = target.position.x;
+                newPos.y = target.position.y;
+                newPos.z = target.position.z;
+            }
+
+            #region Locks
+            if (LockX)
+            {
+                newPos.x = thisTransform.position.x;
+            }
+
+            if (LockY)
+            {
+                newPos.y = thisTransform.position.y;
+            }
+
+            if (LockZ)
+            {
+                newPos.z = thisTransform.position.z;
+            }
+            #endregion
+
+            transform.position = Vector3.Slerp(transform.position, newPos, Time.time);
+        }
 	}
 }

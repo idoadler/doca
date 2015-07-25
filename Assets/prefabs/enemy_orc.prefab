@@ -60,6 +60,9 @@ GameObject:
   - 65: {fileID: 6577714}
   - 114: {fileID: 11485546}
   - 54: {fileID: 5428312}
+  - 114: {fileID: 11452240}
+  - 114: {fileID: 11428292}
+  - 114: {fileID: 11424700}
   m_Layer: 0
   m_Name: enemy_orc
   m_TagString: Untagged
@@ -239,6 +242,60 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11424700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8863fe3222511418def6625725e8f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  player: {fileID: 0}
+  attacking_dist: 6
+  stamina: 8
+  jump_up_force: 300
+  jump_to_player: 50
+--- !u!114 &11428292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc4e40e39dc0074288d0fcf70fa372b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11452240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189bd412c40e6f747a3d66d56e94a874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 6
+  score: 7
+  bule_axis:
+  - vec: {x: -1.19209304e-07, y: 0, z: -1}
+    score: 1
+  - vec: {x: -1.19209304e-07, y: -1, z: -0}
+    score: 2
+  - vec: {x: -1.19209304e-07, y: 0, z: 1}
+    score: 3
+  - vec: {x: -2.38418579e-07, y: 1, z: 5.96046448e-08}
+    score: 4
+  - vec: {x: 1, y: 0, z: 0}
+    score: 5
+  - vec: {x: -1, y: 0, z: 3.2584137e-07}
+    score: 6
 --- !u!114 &11485546
 MonoBehaviour:
   m_ObjectHideFlags: 1
