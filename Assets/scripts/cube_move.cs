@@ -16,11 +16,14 @@ public class cube_move : MonoBehaviour {
     public GameObject target;
     public bool follow_cross = false;
 
+    private Vector3 targetDir;
     private Rigidbody rb;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        targetDir = transform.position;
+        change_dir_tmp = change_dir;
     }
 	
 	// Update is called once per frame
@@ -33,6 +36,8 @@ public class cube_move : MonoBehaviour {
         {
             change_dir_func();
             change_dir_tmp = change_dir;
+
+
         }
 
     }
@@ -62,9 +67,11 @@ public class cube_move : MonoBehaviour {
 
     void move()
     {
-        //    rb.AddTorque(add_torque_force * transform.right);
+        
         Vector3 currDir = transform.rotation.eulerAngles;
-        Vector3 targetDir = target.transform.position - transform.position;
+        targetDir = target.transform.position - transform.position;
+        
+        //    rb.AddTorque(add_torque_force * transform.right);
         //targetDir = new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z);
         targetDir = targetDir.normalized;
         targetDir.y = 0;
@@ -99,8 +106,63 @@ public class cube_move : MonoBehaviour {
                 }
             }
         }
+        /*
         //rb.AddTorque(1, 0, 1);
         //rb.AddRelativeTorque(0, 0, 1);
+        
+
+        Debug.Log(targetDir);
+        //blue 0,0,1
+        Debug.Log(transform.forward);
+        Debug.Log(diff_angle(transform.forward));
+        //red 1,0,0
+        Debug.Log(transform.right);
+        Debug.Log(diff_angle(transform.right));
+        //green 0,1,0
+        Debug.Log(transform.up);
+        Debug.Log(diff_angle(transform.up));
+
+        //green to blue
+        //rb.AddRelativeTorque(1, 0, 0);
+        //blue to red
+        //rb.AddRelativeTorque(0, 1, 0);
+        //red to green
+        //rb.AddRelativeTorque(0, 0, 1);
+
+        int closest_axis = 0;
+
+        if ((diff_angle(transform.forward) < diff_angle(transform.right)) &&
+            (diff_angle(transform.forward) < diff_angle(transform.up)))
+        {
+            Debug.Log("Blue");
+            closest_axis = 1;
+        }
+        else if ((diff_angle(transform.right) < diff_angle(transform.forward)) &&
+            (diff_angle(transform.right) < diff_angle(transform.up)))
+        {
+            Debug.Log("red");
+            closest_axis = 2;
+        }
+        else
+        {
+            Debug.Log("green");
+            closest_axis = 3;
+        }
+        */
+    }
+
+    float diff_angle(Vector3 vec)
+    {
+        float angle = Vector3.Angle(vec, targetDir);
+        if (angle == 180)
+        {
+            return 0;
+        }
+        if (angle > 90)
+        {
+            angle = 180 - angle;
+        }
+        return angle;
     }
 
 }
