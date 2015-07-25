@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class hero_move : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class hero_move : MonoBehaviour {
     public float rotationSpeed = 300;
     public float gravity = 20.0F;
     public GameObject model;
+    public int health = 80;
+    public Text healthText;
     private Vector3 moveDirection = Vector3.zero;
 
     Quaternion lastDirection = Quaternion.identity;
@@ -44,7 +47,20 @@ public class hero_move : MonoBehaviour {
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
-        Debug.Log("hit: " + collision.gameObject.name);
+
+        enemy bad = collision.gameObject.GetComponent<enemy>();
+        if (bad != null)
+        {
+            Debug.Log("hit: " + collision.gameObject.name);
+            // attack
+            if (!GetComponent<CharacterController>().isGrounded)
+            {
+                bad.getHit(GetComponent<find_top_edge>().get_top_edge_result());
+            }
+
+            health -= bad.attack(); // getDemage()
+            healthText.text = health.ToString();
+        }
     }
 
 }
