@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class enemy : MonoBehaviour {
 
     public int health;
+    public Text healthText;
     public GameObject player;
     public float attacking_dist = 6.0f;
     public float stamina = 8.0f;
@@ -20,6 +22,7 @@ public class enemy : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         find_top = GetComponent<find_top_edge>();
+        healthText.text = health.ToString();
     }
 
     void Update()
@@ -59,9 +62,11 @@ public class enemy : MonoBehaviour {
     public void getHit(int damage)
     {
         health -= damage;
+        healthText.text = health.ToString();
         // if health < 0 die
-        if (health < 0)
+        if (health <= 0)
         {
+            Destroy(healthText.gameObject);
             Destroy(this.gameObject);
         }
         // update health matter
