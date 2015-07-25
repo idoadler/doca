@@ -45,4 +45,14 @@ public class hero_move : MonoBehaviour {
         //Making the character move
         controller.Move(moveDirection * Time.deltaTime);
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        foreach (ContactPoint contact in collision.contacts)
+        {
+            Debug.DrawRay(contact.point, contact.normal, Color.white);
+        }
+        Debug.Log("hit: " + collision.gameObject.name);
+    }
+
 }
