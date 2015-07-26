@@ -65,6 +65,9 @@ public class hero_move : MonoBehaviour {
 
 			health -= bad.get_damage(); // getDemage()
             healthText.text = health.ToString();
+
+            if (health <= 0)
+                Application.LoadLevel(1);
         }
     }
 }
